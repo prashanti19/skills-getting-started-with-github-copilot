@@ -92,8 +92,8 @@ def test_unregister_invalid_activity():
 
 def test_root_redirect():
     # Arrange/Act
-    response = client.get("/")
+    response = client.get("/", follow_redirects=False)
     # Assert
-    assert response.status_code in (200, 307, 308)
+    assert response.status_code in (307, 308)
     # Should redirect to /static/index.html
     assert response.headers["location"].endswith("/static/index.html")
